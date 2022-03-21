@@ -9,8 +9,9 @@ import boto3
 
 from faker import Faker
 
+
 def putRecord():
-    rootSteamName = ':TODO'
+    rootSteamName = 'KinesisMultipleDataStack-RootStream89352062-c7d7a924'
     kinesis = boto3.client("kinesis", region_name="us-east-1",
                            endpoint_url="http://localhost:4566")
     fake = Faker()
@@ -37,14 +38,20 @@ def putRecord():
         StreamName=rootSteamName, Data=json.dumps(payload), PartitionKey="abc"
     )
     pprint(response)
-    time.sleep(1)
+
 
 def readRecord():
-    s3 = boto3.resource('s3', endpoint_url="http://localhost:4566")
-    BUCKET_NAME = ':TODO'
-    for item in s3.Bucket(BUCKET_NAME).objects.all():
+    as3 = boto3.resource('s3', endpoint_url="http://localhost:4566")
+    buckbt1 = 'kinesismultipledatastack-brawdatabucketf0fb9de9-8466f741'
+    print('a', len(list(as3.Bucket(buckbt1).objects.all())))
+    for item in as3.Bucket(buckbt1).objects.all():
+        pprint(item.key)
+    buckbt2 = 'kinesismultipledatastack-arawdatabucketa89fb02e-907ca61c'
+    print('b', len(list(as3.Bucket(buckbt2).objects.all())))
+    for item in as3.Bucket(buckbt2).objects.all():
         pprint(item.key)
 
 
 putRecord()
+time.sleep(3)
 readRecord()
