@@ -1,14 +1,20 @@
-# Welcome to your CDK TypeScript project
+# kinesis-data
 
-This is a blank project for TypeScript development with CDK.
+### Part1 - simple kinesis demo
+    
+    The Module reads raw data from the stream, compresses it, and sends it to S3
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+    +---------+      +----------+      +-----------+
+    |         |      |          |      |           |
+    | Stream  +----->+ Firehose +----->+ S3 Bucket |
+    |         |      |          |      |           |
+    +---------+      +----------+      +-----------+
 
-## Useful commands
+    Constructs:
+    IAM Role:
+        - Kinesis firehose to kinesis stream and to S3
+    Stream:
+        - Firehose that pulls from rootStream, buffers, compresses, and puts raw data to S3
+    Bucket:
+        - An S3 bucket to store the compressed, raw data
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template

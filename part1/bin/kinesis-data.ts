@@ -1,17 +1,20 @@
 #!/usr/bin/env node
-import 'source-map-support/register';
-import * as cdk from 'aws-cdk-lib';
-import { KinesisDataStack } from '../lib/kinesis-data-stack';
+import "source-map-support/register";
+import * as cdk from "aws-cdk-lib";
+import { KinesisDataStack } from "../lib/kinesis-data-stack";
+
+const CDK_APP_ACCOUNT_ENV = "000000000000";
+const CDK_APP_REGION_ENV = "us-east-1";
 
 const app = new cdk.App();
-new KinesisDataStack(app, 'KinesisDataStack', {
+new KinesisDataStack(app, "KinesisDataStack", {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
 
   /* Uncomment the next line to specialize this stack for the AWS Account
    * and Region that are implied by the current CLI configuration. */
-  // env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
+  env: { account: CDK_APP_ACCOUNT_ENV, region: CDK_APP_REGION_ENV },
 
   /* Uncomment the next line if you know exactly what Account and Region you
    * want to deploy the stack to. */
