@@ -77,3 +77,31 @@
             s3.EventType.OBJECT_CREATED_PUT,
             new s3n.LambdaDestination(lambdaFunction)
         );
+
+### Part4 - s3 batch copy data to another bucket using lamdba
+
+
+    +----------+      +---------------------+      +------------+
+    |          |      |                     |      |            |
+    |S3 BucketA+----->+  s3 batch + lambda  +----->+ S3 BucketB |
+    |          |      |                     |      |            |
+    +----------+      +---------------------+      +------------+
+
+    Constructs:
+    IAM Role:
+        - lambda access 
+            S3 Bucket A - getObject
+            S3 Bucket B - putObject
+    Bucket:
+        - Taget S3 Bucket A
+        - Source S3 Bucket B
+
+    Core:
+
+    >> S3 Batch Job can only be performed in [s3.console](https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-walkthrough1.html) or using the AWS - SDK Call API.
+
+    >> Create buckets, roles, and lambda using CDK.
+ 
+    >> if use lambda, we need xxx.csv, content: `bucketName, key`
+
+    >> https://aws.amazon.com/blogs/aws/new-replicate-existing-objects-with-amazon-s3-batch-replication/
