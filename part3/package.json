@@ -1,8 +1,8 @@
 {
-  "name": "kinesis-multiple-data",
+  "name": "s3-copy-another-bucket",
   "version": "0.1.0",
   "bin": {
-    "part2": "bin/kinesis-multiple-data.js"
+    "part3": "bin/s3-copy-another-bucket.js"
   },
   "scripts": {
     "build": "tsc",

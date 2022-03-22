@@ -48,3 +48,32 @@
     >> diff `iam.Role`
 
     >> diff `deliveryStreamName`
+
+### Part3 - Write kinesis data stream to multiple Data Stores
+    
+    +----------+      +-----------+      +------------+
+    |          |      |           |      |            |
+    | Stream A +----->+ FirehoseA +----->+ S3 BucketA |
+    |          |      |           |      |            |
+    +----------+      +-----------+      +------------+
+
+    +----------+      +-----------+      +------------+
+    |          |      |           |      |            |
+    |S3 BucketA+----->+   lambda  +----->+ S3 BucketB |
+    |          |      |           |      |            |
+    +----------+      +-----------+      +------------+
+
+    Constructs:
+    IAM Role:
+        - lambda access Taget S3 Bucket A
+    Bucket:
+        - Taget S3 Bucket A
+        - Source S3 Bucket B
+
+
+    Code:
+
+    >>  sourcesBucket.addEventNotification(
+            s3.EventType.OBJECT_CREATED_PUT,
+            new s3n.LambdaDestination(lambdaFunction)
+        );

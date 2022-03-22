@@ -38,14 +38,16 @@ def putRecord():
         StreamName=rootSteamName, Data=json.dumps(payload), PartitionKey="abc"
     )
     pprint(response)
-
+    time.sleep(1)
 
 def readRecord():
+    # sync source
     as3 = boto3.resource('s3', endpoint_url="http://localhost:4566")
     buckbt1 = ':TODO'
     print('a', len(list(as3.Bucket(buckbt1).objects.all())))
     for item in as3.Bucket(buckbt1).objects.all():
         pprint(item.key)
+    # sync target
     buckbt2 = ':TODO'
     print('b', len(list(as3.Bucket(buckbt2).objects.all())))
     for item in as3.Bucket(buckbt2).objects.all():
