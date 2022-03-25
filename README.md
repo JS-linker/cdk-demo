@@ -105,3 +105,26 @@
     >> if use lambda, we need xxx.csv, content: `bucketName, key`
 
     >> https://aws.amazon.com/blogs/aws/new-replicate-existing-objects-with-amazon-s3-batch-replication/
+
+
+### Part5 - Creating a serverless application: read or write s3 bucket.
+
+
+    +----------+      +----------+      +------------+
+    |          |      |          |      |            |
+    |    s3    +----->+  lambda  +----->+ apigateway |
+    |          |      |          |      |            |
+    +----------+      +----------+      +------------+
+
+    Constructs:
+    IAM Role:
+        - lambda access 
+            lambda - read s3 bucket
+            lambda - write s3 bucket
+    Bucket:
+        - S3 Bucket A
+
+    Core:
+
+    >> apigateway.RestApi -> root.addMethod
+    >> apigateway.RestApi -> root.addResource("{id}")
