@@ -128,3 +128,30 @@
 
     >> apigateway.RestApi -> root.addMethod
     >> apigateway.RestApi -> root.addResource("{id}")
+
+### Part6 - Creating Gulp
+
+
+    +---------+      +----------+      +-----------+
+    |         |      |          |      |           |
+    | Stream  +----->+ Firehose +----->+ S3 Bucket |
+    |         |      |          |      |           |
+    +---------+      +----------+      +-----------+
+
+    +----------+      +----------+      +------------+
+    |          |      |          |      |            |
+    |s3 Bucket +----->+  catelog +----->+   athena   |
+    |          |      |          |      |            |
+    +----------+      +----------+      +------------+
+
+    Constructs:
+    IAM Role:
+        - Kinesis firehose to kinesis stream and to S3
+    Stream:
+        - Firehose that pulls from rootStream, buffers, compresses, and puts raw data to S3
+    Bucket:
+        - An S3 bucket to store the compressed, raw data
+    Gulp.DataBase:
+        - CfnDatabase
+    Gulp.Tabel:
+        - CfnTable
