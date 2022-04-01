@@ -4,7 +4,7 @@ import * as cdk from "aws-cdk-lib";
 import { SingleKinesisDataFlowStack } from "../lib/single-kinesis-data-flow-stack";
 import { S3CopyAnotherBucketStack } from "../lib/s3-copy-another-bucket-stack";
 
-const CDK_APP_ACCOUNT_ENV = "650139481770";
+const CDK_APP_ACCOUNT_ENV = "000000000000";
 const CDK_APP_REGION_ENV = "us-east-1";
 
 const app = new cdk.App();
