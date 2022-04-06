@@ -181,3 +181,31 @@
         - CfnDatabase
     Gulp.Tabel:
         - CfnTable -> From Raw Bucket , parquet formate
+        
+### Part8 - Mock S3 history migration and with 2parquet
+
+                                                                                 +---------------+
+                                              +----------+        +------+       |               |
+                                    +-------->| firehose +--------+ gzip +------>|land zone bucke|
+                                    |         +----------+        +------+       |               |
+                                    |                                            +---------------+
+    +-----------------------+       |
+    |                       |       |
+    |  kinesis data stream  +-------+
+    |                       |       |
+    +-----------------------+       |                                            +---------------+
+                                    |         +----------+       +---------+     |               |
+                                    +-------->| firehose +-------+ parquet +---->|raw zone bucket|
+                                              +----------+       +---------+     |               |
+                                                                                 +---------------+
+    Constructs:
+    IAM Role:
+        - Kinesis Data Stream -> Kinesis Firehose A(Role allow write s3 bucket) -> Land Zone
+        - Kinesis Data Stream -> Kinesis Firehose B(Role allow write s3 bucket) -> Raw Zone
+        - Kinesis Firehose B(Role use Gulp.Tabel for parquet formate)
+    Bucket:
+        - LandZone Bucket and RawZone Bucket
+    Gulp.DataBase:
+        - CfnDatabase
+    Gulp.Tabel:
+        - CfnTable -> From Raw Bucket , parquet formate
