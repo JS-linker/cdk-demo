@@ -236,3 +236,26 @@
         - CfnDatabase
     Gulp.Tabel:
         - CfnTable -> From Raw Bucket , parquet formate
+
+### Part11 - simple aws emr
+
+
+    +---------+      +----------+      +-----------+
+    |         |      |          |      |           |
+    | Stream  +----->+ Firehose +----->+    Zone   |
+    |         |      |          |      |           |
+    +---------+      +----------+      +-----------+
+
+    +----------+      +------------------+      +-------------+
+    |          |      |                  |      |             |
+    |   Zone   +----->+   lambda + EMR   +----->+ target Zone |
+    |          |      |                  |      |             |
+    +----------+      +------------------+      +-------------+
+
+    Constructs:
+    IAM Role:
+        - Kinesis Data Stream -> Kinesis Firehose(Role allow write s3 bucket) -> Zone
+        - Zone -> lambda(Role allow elasticmapreduce:RunJobFlow) -> Zone
+    Bucket:
+        - Only KinesisEmrStreamBucket
+        - Diff path
