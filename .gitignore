@@ -1,3 +1,5 @@
 */node_modules
 **/**/node_modules
 */cdk.out
+*/.DS_Store
+.DS_Store
