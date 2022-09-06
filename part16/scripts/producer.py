@@ -24,9 +24,9 @@ def putRecord():
 
     # while True:
     payload = {
-        "asin": str(uuid.uuid4()),
+        "asin": '002',
         # "payload": '{"type":"5min"}',
-        "payload": str(uuid.uuid4()),
+        "payload": 'day',
         # "age": fake.random_int(min=18, max=85, step=1),
         # "address": fake.address(),
         # "city": fake.city(),
